@@ -1,0 +1,45 @@
+with also refer to CTE (comman Table Expression)
+also subquery factoring
+
+Question : Fetch employee who earn more than average salary of all employee
+
+
+with average_salary (avg_sal) as
+          (select cast(avg(salary) as int) from employee)
+select *
+from employee as e,average_salary as av
+where e.salary > av.avg_sal;
+
+
+
+Question : Find stores who's sales where better than the average sales across all stores */
+
+1) total sales per each store -- total_sales
+
+select s.store_id,sum(cost) as total_sales_per_store
+from  sales as s
+group by s.store_id
+
+
+2) Find the average sales with respect all the stores. --Avg_sales
+
+select avg(total_sales_per_store)
+from (select s.store_id,sum(cost) as total_sales_per_store
+from  sales as s
+group by s.store_id) as x;
+
+3) Find the stores where total_sales > Avg_sales of all store
+
+select *
+from (select s.store_id,sum(cost) as total_sales_per_store
+from  sales as s
+group by s.store_id) as total_sales
+join 
+(select avg(total_sales_per_store) as avg_sales_for_all_stores
+from (select s.store_id,sum(cost) as total_sales_per_store
+from  sales as s
+group by s.store_id) as x) avg_sales;
+on total_sales.total_sales_per_store > avg_sales.avg_sales_for_all_stores
+
+
+Same Query with "with" clause

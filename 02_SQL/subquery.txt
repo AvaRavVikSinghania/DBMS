@@ -1,4 +1,6 @@
-subquery
+subquery 
+Scalar subquery  
+  it always returns 1 row and 1 column
 
 select *
 from employee
@@ -37,4 +39,22 @@ How will this execute ,first inner query then outer query and then check if corr
 
 Single column, multiple row subquery
 
+
+Correlated subquery
+ --- A subquery which is related to the outer query
+
+ Question: Find the employee in each department who earn more than the average salary in that department
+ 
+ select avg(salary) from employee where dep_name="specific_department"
+
+ select * from employee as e1 where salary > (select avg(salary) from employee as e2
+                                             where e2.dep_name = e1.dep_name
+                                        )
+
+Question: Find department who do not have any employee
+
+
+select *
+from department
+where not exist (select 1 from employee e where e.dep_name = d.dep_name);
 

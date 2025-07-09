@@ -1,0 +1,132 @@
+Question: Find stores who's sales where better than the average sales across all stores */
+
+-- find the total sales for each store.
+-- find avg sales for all the stores
+-- compare 1 & 2
+
+
+1:
+select store_name, sum(price) as total_sales
+from sales
+group by store_name
+
+
+2:
+select avg(total_sales)
+from
+(select store_name, sum(price) as total_sales
+from sales
+group by store_name)
+
+3:
+select
+from 
+(select store_name, sum(price) as total_sales
+from sales
+group by store_name) as sales
+join (select avg(total_sales)
+     from (select store_name,sum(price)  as total_sales
+      from sales
+      group by store_name) x) avg_sales
+      on sales.total_sales>avg_sal.sales;
+
+
+we are repeating the same query so we can avoid this via  "with"
+
+with sales as
+     (select store_name , sum(price) as total_sales
+     from sales
+     group by store_name
+     )
+select *
+from sales
+join (select avg(total_sales) as sales
+    from sales x) as avg_sales
+    on sales.total_sales > avg_sales.sales
+         
+Different SQL clause where subquery is allowed
+
+There are  4 clauses of sql where I can use subquery
+
+-- select
+-- from 
+-- where
+-- Having
+
+
+Using a subquery in select clause.
+Question: Fetch all employee details and add remarks tp those employee who earn more than the average  pay. */
+
+select *
+,(case when salary > (select avg(salary)from employee)
+   than "Higher salary than average"
+ else null
+end ) as remarks
+from employee
+
+
+--- Having 
+Question: Find the stores who have sold more units than the average units sold by all stores.
+
+select store_name, sum(quantity)
+from sales
+group by store_name
+having sum(quantity) > (select avg(quantity) from sales)
+
+
+# select avg(quantity) from sales
+
+
+All SQL command where We can use subquery
+--sql query --Done
+--insert
+--update
+--delete
+
+--insert
+
+/* Question: insert data to employee history table.make sure not insert dublicate records. */
+insert data to employee history table make sure not insert dublicate records. */
+
+select * from employee_history
+
+
+
+insert into employee_history
+select e.emp_id, e,emp_name, d.dep_name,e.salary, d.location
+from employee as e
+join department as d on d.dep_name = e.dep_name
+where not exist (select 1
+                 from employee_history eh 
+                 where eh.emp_id==e.emp_id
+                 );
+
+
+--UPDATE 
+
+/* Question : Give 10%  increament to all employee in bangalore location based on the maximum
+salary earned by an emp in each dept. only consider employee in employee_history table. */
+
+update employee as e 
+set salary = (select max(salary)+max(salary)*.1
+             from employee_history as eh
+             where eh.dep_name = e.dep_name
+             )
+where e.dep_name in (select dep_name
+                     from department
+                     where location="bangalore"
+                     )
+and e.emp_id in (select emp_id from employee_history);
+
+
+
+
+--- DELETE
+/* Question :Delete all department whp do not have any employee.*/
+
+delete from department
+where dep_name in (
+                  select dep_name
+                  from department d
+                  where not exist (select 1 from employee as e where e.dep_name = d.dep_name)
+                  );
