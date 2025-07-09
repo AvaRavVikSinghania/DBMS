@@ -1,0 +1,22 @@
+Why we need join -->If datas are have in different table then we have to use join
+
+
+
+Inner Join or Join:(only comman value based on some column name)
+Left join : inner join + any additional records in the left table
+(important point we have to remember how we are join place of table depened)
+
+Right join : inner join+ any additional records from the right table
+
+Full outer join or Full join : Inner join
+                             + all additional records from left table
+                             + all additional records from right table
+
+Cross join : it return cartesian product (if there is no comman column based on that we can join then we can cross join)
+
+Natural join: In this join we do not need to provide the comman column for join (basically it matches the column name with two table based on that it join)
+SQL will take care (but problem is that if column name is same but value is stored in those column is differet then natural join is not going to give expected value )
+
+SELF JOIN: we want to map the value within the same table o ther value
+structure like join (inner join)
+

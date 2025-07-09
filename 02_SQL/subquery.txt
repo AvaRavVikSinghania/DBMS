@@ -1,0 +1,40 @@
+subquery
+
+select *
+from employee
+where salary > (select avg(salary) from employee);
+
+
+select * 
+from  employee as e 
+join (select avg(salary) as sal from employee) as avg_sal
+on e.salary > avg_sal.sal
+
+
+
+--- Multiple row subquery
+--- subquery which returns Multiple column and Multiple row
+--- subquery which return only 1 column and Multiple rows
+
+
+Question Find the employees who earn the highest salary in each department. 
+
+select dep_name , max (salary)
+from employee
+group by dep_name
+
+select *
+from employee 
+where (dep_name,salary) in (
+                            select dep_name , max (salary)
+                            from employee
+                            group by dep_name
+                            )
+
+How will this execute ,first inner query then outer query and then check if corresponding value is inside that inner table
+(multiple row and multiple column)
+
+
+Single column, multiple row subquery
+
+

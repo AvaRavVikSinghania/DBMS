@@ -1,0 +1,54 @@
+SQL
+ All the database which support SQL
+                     Oracle
+                     MySQL
+                     Microsoft SQL Server
+                     PostgreSQl
+                     IBM Db2
+                     SQLite
+                     MariaDB
+                     Teradata
+                     Hive
+
+
+SQL COMMANDS:
+    DDL (Data Definition Language) Ex.Create,Drop,Alter,Truncate
+    DML (Data Manipulation Language) Ex.Insert,Update Delete,Merge
+    DCL (Data Control Language) Ex.Grant,Revoke
+    TCL (Transaction Control Language) Ex.Commit Rollback,Savepoint
+    DQL (Data Query Language) Ex. Select
+
+
+Data Type:
+   Most commanly used Data type:
+                         VARCHAR
+                         INT 
+                         DATE
+                         FLOAT
+                         BOOLEAN
+
+
+Constraints:
+   It is very useful to maintain the data Integirity
+   CHECK:Helps to Control the values being inserted into a table column
+   NOT NULL: Helps to ensure that the column value in every row is never blank or empty or NULL
+   UNIQUE :Helps to ensure that the column value in every row is UNIQUE
+   PRIMARY KEY :Ensure that the column value in every row is UNIQUE and has no NULL values
+   FOREIGN KEY :Helps to form parent child relationship between tables child table references column values from parent table
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   

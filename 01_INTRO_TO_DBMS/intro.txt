@@ -1,0 +1,32 @@
+Different type of database
+why we stored the data in database:
+                                  Easily Accessed
+                                  modified
+                                  protected
+                                  Analyzed
+
+Database name: MySQL
+               PostgreSQl
+               MongoDB
+               Neo4j
+               Cassandra
+
+                     Types of Database:
+                                    1:  Relational Database (oracle)
+                                    2. Non -Relational Database (MongoDB)
+
+Example of Relational Database:
+                               oracle,Microsoft SQL Server ,MySQL,PostgreSQl
+
+
+Example of Non- Relational Database:
+               There are so many database:
+                                         Key Value Database(Redis,memcached)
+                                         Document Database (MongoDB)
+                                         Graph Database (Neo4j)
+                                         Wide Column Database (Cassandra,Hbase)
+                                         Search engine Database
+                                         Time Series Database
+
+
+    
