@@ -43,3 +43,28 @@ on total_sales.total_sales_per_store > avg_sales.avg_sales_for_all_stores
 
 
 Same Query with "with" clause
+
+with total_sales (store_id,total_sales_per_store) as
+    (select s.store_id,sum(cost) as total_sales_per_store
+    from sales as s 
+    group by s.store_id),
+    avg_sales (avg_sales_for_all_stores) as 
+    (select total_sales_per_store as avg_sales_for_all_stores
+     from total_sales
+    )
+select *
+from total_sales as ts 
+join avg_sales as av
+on ts.total_sales_per_store>av.avg_sales_for_all_stores
+
+Advantage of using with clause :
+sql execute first with clause then store it temporary table
+It is very useful in recursive query
+
+
+When we should use with clause:
+When we are using a single query multiple times then we can use the with clause
+
+
+
+
