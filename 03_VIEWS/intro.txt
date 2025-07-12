@@ -1,0 +1,48 @@
+View is a Database object 
+View is created over an SQL Query
+View does not store any data
+View is like a virtual table
+
+when datas are confidential so we would want to share it so one else
+Then we can use View
+
+How to create view
+create view order_summary
+as
+(whole sql query)
+
+How to use view
+select * from order_summary
+
+
+why use View
+what is the purpose of creating a view
+what are its Advantages
+
+Advantage:
+1) Security (By hiding the query used to generate the view)
+2) To simplfing complex sql queries
+(
+Sharing a View is better than sharing complex query
+Avoid re-writing same complex query multiple times
+)
+
+
+create role Avaneesh
+login
+password "avaneesh"
+
+grant select on order_summary to Avaneesh
+
+
+Using CREATE or REPLACE
+Modifying a View
+
+CREATE or REPLACE  :==>it creates the view if not exist or replace if it exist
+But only condition is that we can not Modify the name of column or rearrange the column
+
+
+name::varchar (to change the data types)
+
+If query contains group by then can not update such views
+4. If query contains WITH clause then can not update such views
